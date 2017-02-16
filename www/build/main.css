@@ -21275,3 +21275,47 @@ sub {
     padding-top: calc(16px + 20px);
   }
 }
+
+ion-list {
+  margin-top: 20px !important;
+}
+
+.margined {
+  margin-bottom: 10px;
+}
+
+ion-card {
+  box-shadow: transparent;
+}
+
+ion-card img {
+  width: 8rem;
+  height: 8rem;
+  float: left;
+  margin: 0.5rem 0 0.5rem 0.5rem;
+  padding: 1rem;
+}
+
+ion-card ion-card-header {
+  vertical-align: center;
+  line-height: 6rem;
+}
+
+page-my-profile ion-card {
+  width: 95%;
+}
+
+page-my-profile ion-card img {
+  width: 10rem;
+  height: 10rem;
+  float: left;
+  margin: 0.5rem 0 0.5rem 1.5rem;
+  padding: 1rem;
+}
+
+page-my-profile ion-card ion-card-header {
+  vertical-align: center;
+  line-height: 6rem;
+  color: darkblue;
+  text-align: center;
+}

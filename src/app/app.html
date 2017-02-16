@@ -6,8 +6,16 @@
 	</ion-header>
 
 	<ion-content>
+
+		<ion-card>
+			<img src="https://inomics.com/sites/default/files/pictures/picture-95970-1460131169.png" alt="">
+			<ion-card-header> User Fullname </ion-card-header>
+		</ion-card>
+
 		<ion-list no-lines>
-			<button menuClose ion-item icon-left *ngFor="let p of pages" (click)="openPage(p)"> <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}} </button>
+			<button class="margined" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)"> <ion-icon name="{{ p.icon }}" item-left></ion-icon> {{ p.title }} </button>
+			<!--<ion-item>-->
+			<!--<ion-icon name="leaf" item-left></ion-icon> Herbology </ion-item>-->
 		</ion-list>
 	</ion-content>
 

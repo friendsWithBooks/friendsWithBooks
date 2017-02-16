@@ -1,6 +1,6 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
+  "name": "friendsWithBooks",
+  "author": "Azharullah",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -40,5 +40,5 @@
     "cordova-plugin-splashscreen"
   ],
   "cordovaPlatforms": [],
-  "description": "SidemenuTabs: An Ionic project"
+  "description": "Friends With Books"
 }

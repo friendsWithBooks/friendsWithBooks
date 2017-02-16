@@ -33,13 +33,13 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'My Profile', component: MyProfilePage, icon: 'ion-ios-person' },
-			{ title: 'Books Feed', component: BooksFeedTabsPage, icon: 'ion-ios-person' },
-			{ title: 'My Book Store', component: MyBookStoreTabsPage, icon: 'ion-ios-person' },
-			{ title: 'Friends', component: FriendsPage, icon: 'ion-ios-person' },
-			{ title: 'Contact Us', component: ContactUsPage, icon: 'ion-ios-person' },
-			{ title: 'Help', component: HelpPage, icon: 'ion-ios-person' },
-			// { title: 'FB Login', component: FbLoginPage, icon: 'ion-ios-person' }
+      { title: 'My Profile', component: MyProfilePage, icon: 'person' },
+			{ title: 'Books Feed', component: BooksFeedTabsPage, icon: 'notifications' },
+			{ title: 'My Book Store', component: MyBookStoreTabsPage, icon: 'cart' },
+			{ title: 'Friends', component: FriendsPage, icon: 'people' },
+			{ title: 'Contact Us', component: ContactUsPage, icon: 'send' },
+			{ title: 'Help', component: HelpPage, icon: 'help-circle' },
+			// { title: 'FB Login', component: FbLoginPage, icon: 'person' }
     ];
 
   }

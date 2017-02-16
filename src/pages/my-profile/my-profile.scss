@@ -1,3 +1,23 @@
 page-my-profile {
 
+    ion-card
+    {
+        width: 95%;
+        img
+        {
+            width: 10rem;
+            height: 10rem;
+            float: left;
+            margin: 0.5rem 0 0.5rem 1.5rem;
+            padding: 1rem;
+        }
+        ion-card-header
+        {
+            vertical-align: center;
+            line-height: 6rem;
+            color: darkblue;
+            text-align: center;
+        }
+    }
+
 }

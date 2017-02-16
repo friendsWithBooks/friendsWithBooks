@@ -8,15 +8,15 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-friends',
-  templateUrl: 'friends.html'
+	selector: 'page-friends',
+	templateUrl: 'friends.html'
 })
 export class FriendsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+	constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FriendsPage');
-  }
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad FriendsPage');
+	}
 
 }
