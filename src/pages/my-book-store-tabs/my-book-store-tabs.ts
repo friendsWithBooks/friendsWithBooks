@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { MyBooksPage } from './my-books/my-books';
+import { BorrowedBooksPage } from './borrowed-books/borrowed-books';
+import { LentBooksPage } from './lent-books/lent-books';
+import { WishListPage } from './wish-list/wish-list';
 
 /*
   Generated class for the MyBookStoreTabs page.
@@ -21,10 +22,10 @@ export class MyBookStoreTabsPage {
 	constructor() { }
 	// public navCtrl: NavController, public navParams: NavParams
 
-	tab1Root: any = HomePage;
-	tab2Root: any = AboutPage;
-	tab3Root: any = ContactPage;
-	tab4Root: any = ContactPage;
+	tab1Root: any = MyBooksPage;
+	tab2Root: any = BorrowedBooksPage;
+	tab3Root: any = LentBooksPage;
+	tab4Root: any = WishListPage;
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad MyBookStoreTabsPage');
