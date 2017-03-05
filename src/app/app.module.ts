@@ -16,6 +16,7 @@ import { ActionsPage } from '../pages/books-feed-tabs/actions/actions';
 
 import { MyBookStoreTabsPage } from '../pages/my-book-store-tabs/my-book-store-tabs';
 import { MyBooksPage } from '../pages/my-book-store-tabs/my-books/my-books';
+import { AddBooks } from '../pages/my-book-store-tabs/my-books/add-book-modal';
 import { BorrowedBooksPage } from '../pages/my-book-store-tabs/borrowed-books/borrowed-books';
 import { LentBooksPage } from '../pages/my-book-store-tabs/lent-books/lent-books';
 import { WishListPage } from '../pages/my-book-store-tabs/wish-list/wish-list';
@@ -41,6 +42,7 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout'
     ActionsPage,
     MyBookStoreTabsPage,
     MyBooksPage,
+    AddBooks,
     BorrowedBooksPage,
     LentBooksPage,
     WishListPage,
@@ -67,6 +69,7 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout'
     ActionsPage,
     MyBookStoreTabsPage,
     MyBooksPage,
+    AddBooks,
     BorrowedBooksPage,
     LentBooksPage,
     WishListPage,

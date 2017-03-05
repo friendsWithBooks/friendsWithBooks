@@ -35,7 +35,7 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage = BooksFeedTabsPage;
+  rootPage = MyBookStoreTabsPage;
 
   pages: Array<{title: string, component: any, icon: string}>;
 

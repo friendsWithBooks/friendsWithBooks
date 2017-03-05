@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { AddBooks } from './add-book-modal';
 
 /*
   Generated class for the MyBooks page.
@@ -8,15 +9,23 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-my-books',
-  templateUrl: 'my-books.html'
+	selector: 'page-my-books',
+	templateUrl: 'my-books.html'
 })
+
 export class MyBooksPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyBooksPage');
-  }
+	}
+
+	presentContactModal() {
+		let contactModal = this.modalCtrl.create(AddBooks);
+		contactModal.present();
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad MyBooksPage');
+	}
 
 }

@@ -7,14 +7,18 @@
 <ion-header>
 	<ion-navbar>
 		<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
 		<ion-title>My Books</ion-title>
 	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+
+	<ion-fab top right edge>
+		<button ion-fab color="secondary" (click)="presentContactModal()"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
 
 	<p>My Books page goes here!</p>
 
