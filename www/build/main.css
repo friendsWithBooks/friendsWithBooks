@@ -21301,6 +21301,17 @@ ion-card ion-card-header {
   line-height: 6rem;
 }
 
+add-book-modal .searchbar-input {
+  height: 50px !important;
+  line-height: 50px !important;
+  color: darkblue !important;
+}
+
+add-book-modal .searchbar-search-icon {
+  background-size: 25px !important;
+  vertical-align: middle !important;
+}
+
 page-my-profile ion-card {
   width: 95%;
 }
