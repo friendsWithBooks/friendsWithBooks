@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.sidemenutabs582516;
+package com.ionicframework.friendswithbooks;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
