@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { LoadingController } from 'ionic-angular';
 
 /*
   Generated class for the MyBooks page.
@@ -16,16 +17,15 @@ import 'rxjs/add/operator/map';
 
 export class AddBooks {
 
+    @ViewChild('searchbox') myInput;
+
     private showList: boolean;
     items: any[];
     posts: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public http: Http) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public http: Http, public loading: LoadingController) {
         this.showList = false;
         this.initializeItems();
-        this.http.get('https://www.googleapis.com/books/v1/volumes?q=cormen').map(res => res.json()).subscribe(data => {
-            this.items = data.totalItems;
-        });
     }
 
     initializeItems() {
@@ -45,12 +45,24 @@ export class AddBooks {
         //         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         //     })
         // }
-        this.http.get('https://www.googleapis.com/books/v1/volumes?q=cormen').map(res => res.json()).subscribe(data => {
-            this.items = data.totalItems;
+        let loader = this.loading.create({
+            content: `
+                <div class="custom-spinner-container">
+                    <div class="custom-spinner-box"></div>
+                    <p>Fetching books...</p>
+                </div>`,
+        });
+        loader.present().then(() => {
+            var url = 'https://www.googleapis.com/books/v1/volumes?q=' + ev.target.value;
+            this.http.get(url).map(res => res.json()).subscribe(data => {
+                // console.log(data['items'][0]['volumeInfo']['title']);
+                this.items = data['items'];
+            });
+            loader.dismiss()
+            // document.getElementById('searchbox').focus();
+            this.myInput.setFocus();
         });
     }
-
-
 
     onCancel(ev) {
         // Show the results

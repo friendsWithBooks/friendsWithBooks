@@ -3,7 +3,7 @@
     <ion-navbar>
 
         <ion-title>
-            Page Title
+            Add books to your racks
         </ion-title>
 
         <ion-buttons end>
@@ -28,9 +28,11 @@
 </ion-content>-->
 
 <ion-content>
+    <ion-searchbar style="color: red;" #searchbox (ionInput)="getItems($event)" (ionCancel)="onCancel($event)" [showCancelButton]="true"></ion-searchbar>
     <ion-list>
-        <ion-item *ngFor="let post of posts">
-            <img [src]="post.data.url" />
+        <ion-item *ngFor="let item of items">
+            Title: {{ item['volumeInfo']['title'] }} <br>
+            Author: {{ item['volumeInfo']['authors'] }}
         </ion-item>
     </ion-list>
 </ion-content>
