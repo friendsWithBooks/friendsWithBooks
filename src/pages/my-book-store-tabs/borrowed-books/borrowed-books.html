@@ -18,4 +18,15 @@
 
 	<p>Borrowed Books page goes here!</p>
 
+	<ion-list>
+		<ion-item *ngFor="let book of borrowedbooks">
+			<ion-thumbnail item-left>
+				<img src="http://andrewcmaxwell.com/wp-content/themes/acm_2014/images/book_not_found.png">
+			</ion-thumbnail>
+			<h2>{{ book.title }}</h2>
+			<p>By {{ book.author }}</p>
+			<button ion-button clear item-right color="danger" round>Remove</button>
+		</ion-item>
+	</ion-list>
+
 </ion-content>

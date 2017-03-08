@@ -46,5 +46,24 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-facebook4": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-facebook4@~1.7.4"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "1858638574352432",
+            "APP_NAME": "FriendsWithBooks"
+        }
+    },
+    "cordova-plugin-nativestorage": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-nativestorage"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

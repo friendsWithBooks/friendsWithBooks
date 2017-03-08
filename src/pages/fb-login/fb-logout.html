@@ -5,11 +5,12 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
 	<ion-navbar>
-		<ion-title>fbLogout</ion-title>
+		<button ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+		<ion-title>FB Logout</ion-title>
 	</ion-navbar>
-
 </ion-header>
 
 
@@ -17,7 +18,7 @@
 
 	<p>{{ username }}</p>
 	<p>{{ gender }}</p>
-	<p>{{ friends }}</p>
+	<!--<p>{{ friends }}</p>-->
 	<img [src]="picture" alt="">
 
 	<button ion-button icon-left (click)="doFbLogout()">

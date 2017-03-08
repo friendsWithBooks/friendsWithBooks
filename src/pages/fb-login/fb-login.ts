@@ -17,46 +17,46 @@ import { FbLogoutPage } from './fb-logout'
 export class FbLoginPage {
 
 	FB_APP_ID: number = 1858638574352432;
-    username: string;
-    gender: string;
+	username: string;
+	gender: string;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {
-		Facebook.browserInit(this.FB_APP_ID, "v2.8");
+		// Facebook.browserInit(this.FB_APP_ID, "v2.8");
 	}
 
 	doFbLogin() {
 		let permissions = new Array();
 		let nav = this.navCtrl;
-		//the permissions your facebook app needs from the user
-		permissions = ["public_profile", "user_friends"];
+		// the permissions your facebook app needs from the user
+		permissions = ["public_profile"];
 
 		Facebook.login(permissions)
 			.then(function (response) {
 				let userId = response.authResponse.userID;
 				let params = new Array();
 
-				//Getting name and gender properties
-				Facebook.api("/me?fields=name, gender, friends", params)
-					.then(function (user) {
-						user.picture = "https://graph.facebook.com/" + userId + "/picture?type=small";
-						// user.friends = "https://graph.facebook.com/" + userId + "/friendlists"
-						//now we have the users info, let's save it in the NativeStorage
-						NativeStorage.setItem('user',
-							{
-								name: user.name,
-								gender: user.gender,
-								picture: user.picture,
-								friends: user.friends
-							})
-							.then(function () {
-								nav.push(FbLogoutPage);
-							}, function (error) {
-								console.log(error);
-							})
+		// Getting name and gender properties
+		Facebook.api("/me?fields=name,gender", params)
+			.then(function (user) {
+				user.picture = "https://graph.facebook.com/" + userId + "/picture?type=small";
+				// user.friends = "https://graph.facebook.com/" + userId + "/friendlists"
+				//now we have the users info, let's save it in the NativeStorage
+				NativeStorage.setItem('user',
+					{
+						name: user.name,
+						gender: user.gender,
+						picture: user.picture
+						// friends: user.friends
 					})
-			}, function (error) {
-				console.log(error);
-			});
+					.then(function () {
+						nav.push(FbLogoutPage);
+					}, function (error) {
+						console.log(error);
+					})
+			})
+		}, function (error) {
+			console.log(error);
+		});
 	}
 
 	ionViewDidLoad() {

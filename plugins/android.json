@@ -24,6 +24,14 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1858638574352432",
+            "APP_NAME": "Friends With Books",
+            "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
         }
     },
     "dependent_plugins": {}
