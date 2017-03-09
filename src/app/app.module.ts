@@ -2,9 +2,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 
 import { MyProfilePage } from '../pages/my-profile/my-profile';
 
@@ -20,6 +17,7 @@ import { AddBooks } from '../pages/my-book-store-tabs/my-books/add-book-modal';
 import { BorrowedBooksPage } from '../pages/my-book-store-tabs/borrowed-books/borrowed-books';
 import { LentBooksPage } from '../pages/my-book-store-tabs/lent-books/lent-books';
 import { WishListPage } from '../pages/my-book-store-tabs/wish-list/wish-list';
+import { AddWishListBooks } from '../pages/my-book-store-tabs/wish-list/add-book-modal';
 
 import { FriendsPage } from '../pages/friends/friends';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
@@ -31,9 +29,6 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout'
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    AboutPage,
-    ContactPage,
     MyProfilePage,
     BooksFeedTabsPage,
     WishlistBooksPage,
@@ -46,6 +41,7 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout'
     BorrowedBooksPage,
     LentBooksPage,
     WishListPage,
+    AddWishListBooks,
     FriendsPage,
     ContactUsPage,
     HelpPage,
@@ -58,9 +54,6 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    AboutPage,
-    ContactPage,
     MyProfilePage,
     BooksFeedTabsPage,
     WishlistBooksPage,
@@ -73,6 +66,7 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout'
     BorrowedBooksPage,
     LentBooksPage,
     WishListPage,
+    AddWishListBooks,
     FriendsPage,
     ContactUsPage,
     HelpPage,

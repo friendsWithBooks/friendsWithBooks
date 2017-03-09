@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { AddWishListBooks } from './add-book-modal';
 
 /*
   Generated class for the WishList page.
@@ -16,7 +17,7 @@ export class WishListPage {
 
 	wishlistbooks: Array<{ title: string, author: string, imglink: string }>;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) { 
+	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) { 
 
 		this.wishlistbooks = [
 			{ title: 'Title 1', author: "Author 1", imglink: 'link 1' },
@@ -26,6 +27,16 @@ export class WishListPage {
 			{ title: 'Title 5', author: "Author 4", imglink: 'link 5' }
 		];
 
+	}
+
+	presentContactModal() {
+		let contactModal = this.modalCtrl.create(AddWishListBooks);
+		contactModal.onDidDismiss(data => {
+			console.log(data);
+			var newItem = { title: data['item']['volumeInfo']['title'], author: data['item']['volumeInfo']['authors'], imglink: 'Link new' };
+			this.wishlistbooks.push(newItem);
+		});
+		contactModal.present();
 	}
 
 	ionViewDidLoad() {

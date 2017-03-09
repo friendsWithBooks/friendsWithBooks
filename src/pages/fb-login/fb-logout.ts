@@ -15,6 +15,7 @@ export class FbLogoutPage {
     username: string;
     gender: string;
     picture: string;
+    email: string;
     // friends: string;
 
     constructor(public navCtrl: NavController) {
@@ -25,7 +26,8 @@ export class FbLogoutPage {
             .then(function (data) {
                 env.username = data.name,
                 env.gender = data.gender,
-                env.picture = data.picture
+                env.picture = data.picture,
+                env.email = data.email
                 // env.friends = data.friends
             }, function (error) {
                 env.username = error

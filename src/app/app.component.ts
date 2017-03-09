@@ -5,10 +5,6 @@ import { Facebook, NativeStorage } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { HomePage } from '../pages/home/home';
-import { SettingsPage } from '../pages/settings/settings';
-import { AccountPage } from '../pages/account/account';
-
 import { MyProfilePage } from '../pages/my-profile/my-profile';
 
 import { BooksFeedTabsPage } from '../pages/books-feed-tabs/books-feed-tabs';
@@ -36,7 +32,7 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout';
 export class MyApp {
 	@ViewChild(Nav) nav: Nav;
 
-	rootPage = MyBookStoreTabsPage;
+	rootPage = ContactUsPage;
 
 	pages: Array<{ title: string, component: any, icon: string }>;
 
