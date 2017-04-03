@@ -5,24 +5,26 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-	<ion-navbar>
-		<button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       		<ion-icon name="menu"></ion-icon>
     	</button>
-		<ion-title>FB Logout</ion-title>
-	</ion-navbar>
+        <ion-title>FB Logout</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
-	<p>{{ username }}</p>
-	<p>{{ gender }}</p>
-	<p>{{ email }}</p>
-	<!--<p>{{ friends }}</p>-->
-	<img [src]="picture" alt="">
+    <p>{{ username }}</p>
+    <p>{{ gender }}</p>
+    <p>{{ email }}</p>
+    <p> {{ userID }} </p>
+    <p> {{ token }} </p>
+    <!--<p>{{ friends }}</p>-->
+    <img [src]="picture" alt="">
 
-	<button ion-button icon-left (click)="doFbLogout()">
+    <button ion-button icon-left (click)="doFbLogout()">
 		<ion-icon name="home"></ion-icon> Logout with FB
 	</button>
 

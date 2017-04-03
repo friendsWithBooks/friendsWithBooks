@@ -21301,6 +21301,18 @@ ion-card ion-card-header {
   line-height: 6rem;
 }
 
+page-contact-us ion-item {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+page-contact-us #custom {
+  margin-top: 20px !important;
+  margin-left: 50% !important;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
 add-book-modal .searchbar-input {
   height: 50px !important;
   line-height: 50px !important;

@@ -23,6 +23,9 @@ import { FriendsPage } from '../pages/friends/friends';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { HelpPage } from '../pages/help/help';
 
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 import { FbLoginPage } from '../pages/fb-login/fb-login';
 import { FbLogoutPage } from '../pages/fb-login/fb-logout';
 
@@ -36,7 +39,16 @@ export class MyApp {
 
 	pages: Array<{ title: string, component: any, icon: string }>;
 
-	constructor(public platform: Platform) {
+	result: any;
+	FB_APP_ID: number = 1858638574352432;
+	userID: string;
+	token: string;
+	username: string;
+	gender: string;
+	email: string;
+	profilePicture: string;
+
+	constructor(public platform: Platform, public http: Http) {
 		this.initializeApp();
 
 		// used for an example of ngFor and navigation
@@ -67,11 +79,26 @@ export class MyApp {
 				.then(function (data) {
 					// user is previously logged and we have his data
 					// we will let him access the app
-					env.nav.push(MyBookStoreTabsPage);
+					env.userID = data.userID;
+					env.token = data.token;
+					env.profilePicture = data.picture;
+					var body = {
+						'_id': env.userID,
+						'token': env.token,
+						'name': env.username,
+						'profilePic': env.profilePicture
+					};
+					var url = "http://192.168.40.56:3000/users/" + env.userID;
+					console.log("URL is ", JSON.stringify(body));
+					this.http.post(url, JSON.stringify(body))
+						.map(res => res.json());
+					// .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+					console.log("data received", this.result);
+					// env.nav.push(FbLogoutPage);
 					Splashscreen.hide();
 				}, function (error) {
 					//we don't have the user data so we will ask him to log in
-					env.nav.push(MyBookStoreTabsPage);
+					env.nav.push(FbLogoutPage);
 					Splashscreen.hide();
 				});
 
