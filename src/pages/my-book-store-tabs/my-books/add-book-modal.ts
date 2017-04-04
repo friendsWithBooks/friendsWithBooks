@@ -108,8 +108,8 @@ export class AddBooks {
     }
 
     public dismiss(item) {
-        let data = { item };
-        this.viewCtrl.dismiss(data);
+        // let data = { item };
+        this.viewCtrl.dismiss();
     }
 
     ionViewDidLoad() {

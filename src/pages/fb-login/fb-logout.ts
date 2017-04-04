@@ -36,15 +36,15 @@ export class FbLogoutPage {
                     env.email = data.email
                 // env.friends = data.friends
 
-                var body = {
-                    '_id': env.userID,
-                    'token': env.token,
-                    'name': env.username,
-                    'profilePic': env.picture
-                }
+                // var body = {
+                //     '_id': env.userID,
+                //     'token': env.token,
+                //     'name': env.username,
+                //     'profilePic': env.picture
+                // }
 
-                var url = "http://192.168.40.56:3000/users/" + body._id;
-                console.log(url, body);
+                // var url = "http://192.168.40.56:3000/users/" + body._id;
+                // console.log(url, body);
                 // this.http.get(url);
                 // this.http.post(url, JSON.stringify(body), {
                 // })
@@ -54,13 +54,13 @@ export class FbLogoutPage {
                 // err => this.logError(err),
                 // () => console.log('Authentication Complete')
                 // );
-                this.http.get(url)
-                    .map(res => res.text())
-                    .subscribe(
-                    data => this.randomQuote = data,
-                    err => this.logError(err),
-                    () => console.log('Random Quote Complete')
-                    );
+                // this.http.get(url)
+                //     .map(res => res.text())
+                //     .subscribe(
+                //     data => this.randomQuote = data,
+                //     err => this.logError(err),
+                //     () => console.log('Random Quote Complete')
+                //     );
             }, function (error) {
                 console.log("Error is", error);
             });

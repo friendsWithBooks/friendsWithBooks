@@ -23,11 +23,14 @@ import { FriendsPage } from '../pages/friends/friends';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { HelpPage } from '../pages/help/help';
 
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+// import { Http, Headers, RequestOptions } from '@angular/http';
+// import 'rxjs/add/operator/map';
 
 import { FbLoginPage } from '../pages/fb-login/fb-login';
 import { FbLogoutPage } from '../pages/fb-login/fb-logout';
+
+import { OpaqueToken, Injectable, Inject } from "@angular/core";
+// import { MY_CONFIG_TOKEN, MY_CONFIG, ApplicationConfig } from 'app.component.ts';
 
 @Component({
 	templateUrl: 'app.html'
@@ -48,7 +51,7 @@ export class MyApp {
 	email: string;
 	profilePicture: string;
 
-	constructor(public platform: Platform, public http: Http) {
+	constructor(public platform: Platform) {
 		this.initializeApp();
 
 		// used for an example of ngFor and navigation
@@ -63,6 +66,7 @@ export class MyApp {
 		];
 
 	}
+	
 	openPage(page) {
 		// Reset the content nav to have just this page
 		// we wouldn't want the back button to show in this scenario
@@ -75,33 +79,21 @@ export class MyApp {
 			// Here we will check if the user is already logged in
 			// because we don't want to ask users to log in each time they open the app
 			let env = this;
-			NativeStorage.getItem('user')
-				.then(function (data) {
-					// user is previously logged and we have his data
-					// we will let him access the app
-					env.userID = data.userID;
-					env.token = data.token;
-					env.profilePicture = data.picture;
-					var body = {
-						'_id': env.userID,
-						'token': env.token,
-						'name': env.username,
-						'profilePic': env.profilePicture
-					};
-					var url = "http://192.168.40.56:3000/users/" + env.userID;
-					console.log("URL is ", JSON.stringify(body));
-					this.http.post(url, JSON.stringify(body))
-						.map(res => res.json());
-					// .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-					console.log("data received", this.result);
-					// env.nav.push(FbLogoutPage);
-					Splashscreen.hide();
-				}, function (error) {
-					//we don't have the user data so we will ask him to log in
-					env.nav.push(FbLogoutPage);
-					Splashscreen.hide();
-				});
+			// NativeStorage.getItem('user')
+			// 	.then(function (data) {
+			// 		env.nav.push(FbLoginPage);
+			// 		Splashscreen.hide();
+			// 	}, function (error) {
+			// 		//we don't have the user data so we will ask him to log in
+			// 		env.nav.push(FbLogoutPage);
+			// 		Splashscreen.hide();
+			// 	});
 
+			// Push to FbLoginPage to force FB login
+			// env.nav.push(FbLoginPage);
+			
+			// Pushing to temporary pages for testing but app wont work without FB login
+			env.nav.push(MyBookStoreTabsPage);
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
 			StatusBar.styleDefault();
@@ -109,3 +101,19 @@ export class MyApp {
 		});
 	}
 }
+
+// Although the ApplicationConfig interface plays no role in dependency injection, 
+// it supports typing of the configuration object within the class.
+export interface ApplicationConfig {
+	appName: string;
+	apiEndpoint: string;
+}
+
+// Configuration values for our app
+export const MY_CONFIG: ApplicationConfig = {
+	appName: 'NodeJS API',
+	apiEndpoint: 'http://localhost:3000'
+};
+
+// Create a config token to avoid naming conflicts
+export const MY_CONFIG_TOKEN = new OpaqueToken('config');
