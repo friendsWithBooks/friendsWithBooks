@@ -29,9 +29,6 @@ import { HelpPage } from '../pages/help/help';
 import { FbLoginPage } from '../pages/fb-login/fb-login';
 import { FbLogoutPage } from '../pages/fb-login/fb-logout';
 
-import { OpaqueToken, Injectable, Inject } from "@angular/core";
-// import { MY_CONFIG_TOKEN, MY_CONFIG, ApplicationConfig } from 'app.component.ts';
-
 @Component({
 	templateUrl: 'app.html'
 })
@@ -101,19 +98,3 @@ export class MyApp {
 		});
 	}
 }
-
-// Although the ApplicationConfig interface plays no role in dependency injection, 
-// it supports typing of the configuration object within the class.
-export interface ApplicationConfig {
-	appName: string;
-	apiEndpoint: string;
-}
-
-// Configuration values for our app
-export const MY_CONFIG: ApplicationConfig = {
-	appName: 'NodeJS API',
-	apiEndpoint: 'http://localhost:3000'
-};
-
-// Create a config token to avoid naming conflicts
-export const MY_CONFIG_TOKEN = new OpaqueToken('config');

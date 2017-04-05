@@ -23,8 +23,10 @@ import { FriendsPage } from '../pages/friends/friends';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { HelpPage } from '../pages/help/help';
 
-import { FbLoginPage } from '../pages/fb-login/fb-login'
-import { FbLogoutPage } from '../pages/fb-login/fb-logout'
+import { FbLoginPage } from '../pages/fb-login/fb-login';
+import { FbLogoutPage } from '../pages/fb-login/fb-logout';
+
+import { global } from './service';
 
 @NgModule({
   declarations: [
