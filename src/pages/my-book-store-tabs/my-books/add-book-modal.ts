@@ -51,23 +51,6 @@ export class AddBooks {
             this.http.get(url).map(res => res.json()).subscribe(data => {
                 // console.log(data);
                 this.items = data['items'];
-                // for(var i=0; i<data['items'].length; i++){
-                //     if(data['items'][i]['volumeInfo']['title']){
-                //         // console.log(data['items'][i]['volumeInfo']['title']);
-                //         this.items[i]['title'] = data['items'][i]['volumeInfo']['title'];
-                //     }
-                //     if(data['items'][i]['volumeInfo']['authors']){
-                //         // console.log(data['items'][i]['volumeInfo']['authors']);
-                //         this.items[i]['author'] = data['items'][i]['volumeInfo']['authors'];
-                //     }
-                //     if(data['items'][i]['volumeInfo']['imageLinks']['thumbnail']){
-                //         // console.log(data['items'][i]['volumeInfo']['imageLinks']['thumbnail']);
-                //         this.items[i]['imglink'] = data['items'][i]['volumeInfo']['imageLinks']['thumbnail'];
-                //     }
-                //     else{
-                //         this.items[i]['imglink'] = "NA"
-                //     }
-                // }
             });
             loader.dismiss()
             // document.getElementById('searchbox').focus();
@@ -76,7 +59,7 @@ export class AddBooks {
     }
 
     confirmAdd(item) {
-        console.log(item);
+        console.log("Got in alert", item);
         let confirm = this.alerCtrl.create({
             title: 'Add this book to your racks?',
             subTitle: item['volumeInfo']['title'],// by item['volumeInfo']['authors']}}",
@@ -91,7 +74,7 @@ export class AddBooks {
                 {
                     text: 'Add',
                     handler: () => {
-                        console.log('Add clicked');
+                        console.log('Add clicked', item);
                         this.dismiss(item);
                     }
                 }
@@ -108,8 +91,8 @@ export class AddBooks {
     }
 
     public dismiss(item) {
-        // let data = { item };
-        this.viewCtrl.dismiss();
+        let data = { item };
+        this.viewCtrl.dismiss(data);
     }
 
     ionViewDidLoad() {

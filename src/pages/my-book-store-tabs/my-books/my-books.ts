@@ -7,6 +7,8 @@ import { NativeStorage } from 'ionic-native';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { global } from '../../../app/service';
+
 /*
   Generated class for the MyBooks page.
 
@@ -32,7 +34,7 @@ export class MyBooksPage {
 	presentContactModal() {
 		let contactModal = this.modalCtrl.create(AddBooks);
 		contactModal.onDidDismiss(data => {
-			console.log(data);
+			console.log("Modal closed and got", data);
 			var newItem = {
 				_id: data['id'],
 				title: data['item']['volumeInfo']['title'],
@@ -42,20 +44,11 @@ export class MyBooksPage {
 				availability: 'free'
 			};
 
-			let env = this;
-			// push newItem to server
-			NativeStorage.getItem('user')
-				.then(function (data) {
-					// this.userID = data.userID;
-					console.log("Got userID", data.userID);
-					// Now push the user's new mybook to server
-					env.pushToServer(data.userID, newItem);
-					// Now push to mybooks (temporary array)
-					env.mybooks.push(newItem);
-				},
-				function (error) {
-					console.log(error);
-				});
+			var userID = global.userID;
+
+			this.pushToServer(userID, newItem);
+			this.mybooks.push(newItem);
+
 		});
 		contactModal.present();
 	}
@@ -64,41 +57,33 @@ export class MyBooksPage {
 		console.log('ionViewDidLoad MyBooksPage');
 
 		let env = this;
-		NativeStorage.getItem('user')
-			.then(function (data) {
-				env.userID = data.userID;
-				console.log("Got userID", env.userID);
-				// Now get the user's mybooks from server
-				var url = "http://192.168.40.160:3000/myRacks/" + env.userID;
-				console.log("Got url", url);
-				let headers = new Headers({ 'Content-Type': 'application/json' });
-				let options = new RequestOptions({ headers: headers });
 
-				// Empty mybooks as it'll be populated by server
-				env.mybooks = [];
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let options = new RequestOptions({ headers: headers });
 
-				env.http.get(url, { headers: headers })
-					.map(res => res.json())
-					.subscribe(
-					res => {
-						console.log("Res is ", res);
-						if (res.length == 0) {
-							console.log("MyBooks result is null");
-							// this.mybooks = [];
-						}
-						else {
-							console.log("MyBooks result is not null");
-							console.log(res.length);
-							for (var i = 0; i < res.length; i++) {
-								console.log("I is ", res[i]);
-								env.mybooks.push(res[i]);
-							}
-						}
-					},
-				);
+		var userID = global.userID;
+		var url = global.serverIP + "myRacks/" + userID;
 
-			}, function (error) {
-				console.log(error);
+		// Empty mybooks as it'll be populated by server
+		env.mybooks = [];
+
+		env.http.get(url, { headers: headers })
+			.map(res => res.json())
+			.subscribe(
+			res => {
+				console.log("Res is ", res);
+				if (res.length == 0) {
+					console.log("MyBooks result is null");
+					// this.mybooks = [];
+				}
+				else {
+					console.log("MyBooks result is not null");
+					console.log(res.length);
+					for (var i = 0; i < res.length; i++) {
+						// console.log("I is ", res[i]);
+						env.mybooks.push(res[i]);
+					}
+				}
 			});
 	}
 
@@ -112,7 +97,7 @@ export class MyBooksPage {
 
 		console.log("Called pushToServer");
 
-		var url = "http://192.168.40.160:3000/myRacks/add/" + userID + "/";
+		var url =  global.serverIP + "myRacks/add/" + userID + "/";
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
 
