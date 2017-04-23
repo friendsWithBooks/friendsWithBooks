@@ -5,16 +5,22 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-	<ion-navbar>
-		<button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-		<ion-title>Pending Actions</ion-title>
-	</ion-navbar>
+        <ion-title>Pending Actions</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-	<p>Pending Actions page goes here!</p>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <h4>Pending Actions...</h4>
+    <hr>
 
 </ion-content>

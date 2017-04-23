@@ -20,6 +20,7 @@ export class FbLogoutPage {
     gender: string;
     picture: string;
     email: string;
+    location: any;
     // friends: string;
 
     constructor(public navCtrl: NavController, public http: Http) {
@@ -33,7 +34,8 @@ export class FbLogoutPage {
                     env.username = data.name,
                     env.gender = data.gender,
                     env.picture = data.picture,
-                    env.email = data.email
+                    env.email = data.email,
+                    env.location = data.location
                 // env.friends = data.friends
 
                 // var body = {
@@ -89,7 +91,7 @@ export class FbLogoutPage {
                 NativeStorage.remove('user');
                 nav.push(FbLoginPage);
             }, function (error) {
-                console.log(error);
+                console.log("This error", error);
             });
     }
 }

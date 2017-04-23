@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
         },
@@ -32,7 +29,20 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
+        },
+        "cordova-plugin-request-location-accuracy": {
+            "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.friendswithbooks"
+        }
+    }
 }

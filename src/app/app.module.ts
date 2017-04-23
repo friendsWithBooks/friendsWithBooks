@@ -28,6 +28,9 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout';
 
 import { global } from './service';
 
+import { Geolocation } from '@ionic-native/geolocation';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -75,6 +78,6 @@ import { global } from './service';
     FbLoginPage,
     FbLogoutPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Geolocation, LocationAccuracy]
 })
 export class AppModule {}

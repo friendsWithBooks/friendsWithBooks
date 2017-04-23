@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { AddBooks } from './add-book-modal';
 
-import { NativeStorage } from 'ionic-native';
-
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -36,13 +34,15 @@ export class MyBooksPage {
 		contactModal.onDidDismiss(data => {
 			console.log("Modal closed and got", data);
 			var newItem = {
-				_id: data['id'],
+				_id: data['item']['id'],
 				title: data['item']['volumeInfo']['title'],
 				author: data['item']['volumeInfo']['authors'],
 				image: 'Link new',
 				rating: data['item']['volumeInfo']['averageRating'],
 				availability: 'free'
 			};
+
+			console.log("New Item is ", newItem);
 
 			var userID = global.userID;
 
@@ -72,7 +72,7 @@ export class MyBooksPage {
 			.subscribe(
 			res => {
 				console.log("Res is ", res);
-				if (res.length == 0) {
+				if (res == 'null' || res == '') {
 					console.log("MyBooks result is null");
 					// this.mybooks = [];
 				}
@@ -97,7 +97,7 @@ export class MyBooksPage {
 
 		console.log("Called pushToServer");
 
-		var url =  global.serverIP + "myRacks/add/" + userID + "/";
+		var url = global.serverIP + "myRacks/add/" + userID + "/";
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
 
@@ -105,6 +105,30 @@ export class MyBooksPage {
 			.map(res => res.json())
 			.subscribe();
 
+	}
+
+	deleteBook(body) {
+		console.log("Want to delete?", body);
+
+		var url = global.serverIP + "myRacks/remove/" + global.userID;
+
+		console.log("URL is", url);
+
+		console.log("Deleting ", body);
+
+		var newItem = {
+			_id: body
+		}
+
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let options = new RequestOptions({
+			headers: headers,
+			body: newItem
+		});
+
+		this.http.delete(url, options)
+			.map(res => res)
+			.subscribe();
 	}
 
 }

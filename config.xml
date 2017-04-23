@@ -15,6 +15,8 @@
   <allow-navigation href="http://192.168.40.140:8100"/>
   <allow-navigation href="http://192.168.40.173:8100"/>
   <allow-navigation href="http://192.168.40.160:8100"/>
+  <allow-navigation href="http://192.168.40.166:8100"/>
+  <allow-navigation href="http://192.168.40.194:8100"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
@@ -37,6 +39,7 @@
   <preference name="FadeSplashScreenDuration" value="300"/>
   <preference name="SplashShowOnlyFirstTime" value="false"/>
   <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
+  <preference name="loadUrlTimeoutValue" value="70000"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
@@ -51,4 +54,5 @@
     <variable name="APP_ID" value="1858638574352432"/>
     <variable name="APP_NAME" value="FriendsWithBooks"/>
   </plugin>
+  <plugin name="cordova-plugin-geolocation" spec="~2.4.2"/>
 </widget>

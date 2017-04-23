@@ -23,11 +23,16 @@ import { FriendsPage } from '../pages/friends/friends';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { HelpPage } from '../pages/help/help';
 
+import { global } from './service';
+
 // import { Http, Headers, RequestOptions } from '@angular/http';
 // import 'rxjs/add/operator/map';
 
 import { FbLoginPage } from '../pages/fb-login/fb-login';
 import { FbLogoutPage } from '../pages/fb-login/fb-logout';
+
+import { Geolocation } from 'ionic-native';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 @Component({
 	templateUrl: 'app.html'
@@ -35,7 +40,7 @@ import { FbLogoutPage } from '../pages/fb-login/fb-logout';
 export class MyApp {
 	@ViewChild(Nav) nav: Nav;
 
-	rootPage = ContactUsPage;
+	rootPage = FbLogoutPage;
 
 	pages: Array<{ title: string, component: any, icon: string }>;
 
@@ -63,7 +68,7 @@ export class MyApp {
 		];
 
 	}
-	
+
 	openPage(page) {
 		// Reset the content nav to have just this page
 		// we wouldn't want the back button to show in this scenario
@@ -76,25 +81,54 @@ export class MyApp {
 			// Here we will check if the user is already logged in
 			// because we don't want to ask users to log in each time they open the app
 			let env = this;
-			// NativeStorage.getItem('user')
-			// 	.then(function (data) {
-			// 		env.nav.push(FbLoginPage);
-			// 		Splashscreen.hide();
-			// 	}, function (error) {
-			// 		//we don't have the user data so we will ask him to log in
-			// 		env.nav.push(FbLogoutPage);
-			// 		Splashscreen.hide();
-			// 	});
 
-			// Push to FbLoginPage to force FB login
+			// env.locationAccuracy.canRequest().then((canRequest: boolean) => {
+
+			// 	if (canRequest) {
+			// 		// the accuracy option will be ignored by iOS
+			// 		env.locationAccuracy.request(env.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+			// 			() => console.log('Request successful'),
+			// 			error => console.log('Error requesting location permissions', error)
+			// 		);
+			// 	}
+
+			// });
+
+			// env.geolocation.getCurrentPosition().then((resp) => {
+			// 	console.log("Latitude is", resp.coords.latitude);
+			// 	console.log("Long is", resp.coords.longitude);
+			// 	// this.userlat = resp.coords.latitude
+			// 	// this.userlong = resp.coords.longitude
+			// }).catch((error) => {
+			// 	console.log('Error getting location', error);
+			// });
+
+			// Check if userID is stored
+
+			NativeStorage.getItem('user')
+				.then(function (data) {
+					global.userID = data.userID
+					console.log("This is in service....@@@@");
+				}, function (error) {
+					console.log("Error is", error);
+				});
+
 			// env.nav.push(FbLoginPage);
-			
+			if (global.userID == 'none') {
+				// Push to FbLoginPage to force FB login
+				env.nav.push(FbLoginPage);
+			}
+			else {
+				env.nav.push(MyBookStoreTabsPage);
+			}
+
 			// Pushing to temporary pages for testing but app wont work without FB login
-			env.nav.push(MyBookStoreTabsPage);
+			// env.nav.push(MyBookStoreTabsPage);
+
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
 			StatusBar.styleDefault();
-			// Splashscreen.hide();
+			Splashscreen.hide();
 		});
 	}
 }

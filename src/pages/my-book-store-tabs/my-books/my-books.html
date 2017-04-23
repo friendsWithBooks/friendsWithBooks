@@ -25,16 +25,25 @@
         <button ion-fab color="secondary" (click)="presentContactModal()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
-    <p>My Books page goes here!</p>
+    <!--<p>My Books page goes here!</p>-->
 
     <ion-list>
+
+        <h4>Books owned by me...</h4>
+        <hr>
+
         <ion-item *ngFor="let book of mybooks">
             <ion-thumbnail item-left>
                 <img src="http://andrewcmaxwell.com/wp-content/themes/acm_2014/images/book_not_found.png">
             </ion-thumbnail>
             <h2>{{ book.title }}</h2>
-            <p>By {{ book.author }}</p>
-            <button ion-button clear item-right color="danger" round>Remove</button>
+            <p>By {{ book.author }}</p> <br>
+            <p>
+                Book Status:
+                <button style="margin-top: 0px;" ion-button clear item-right color="default" round>{{ book.availability }}</button>
+                <button style="margin-top: 0px;" ion-button clear item-right color="danger" round (click)="deleteBook(book._id)">Remove</button>
+            </p>
+            <p></p>
         </ion-item>
     </ion-list>
 

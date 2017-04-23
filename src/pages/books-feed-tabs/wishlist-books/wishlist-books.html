@@ -5,17 +5,23 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-	<ion-navbar>
-		<button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-		<ion-title>Wishlist Books</ion-title>
-	</ion-navbar>
+        <ion-title>Wishlist Books</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
-	<p>Wish List Books page go here!</p>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <h4>My Wishlist Books...</h4>
+    <hr>
 
 </ion-content>
