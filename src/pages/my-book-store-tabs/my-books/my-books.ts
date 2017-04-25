@@ -24,6 +24,7 @@ export class MyBooksPage {
 	result: any;
 	userID: string;
 	url: string;
+	bookslength: boolean = false;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public http: Http) {
 		this.mybooks = [];
@@ -33,21 +34,25 @@ export class MyBooksPage {
 		let contactModal = this.modalCtrl.create(AddBooks);
 		contactModal.onDidDismiss(data => {
 			console.log("Modal closed and got", data);
-			var newItem = {
-				_id: data['item']['id'],
-				title: data['item']['volumeInfo']['title'],
-				author: data['item']['volumeInfo']['authors'],
-				image: 'Link new',
-				rating: data['item']['volumeInfo']['averageRating'],
-				availability: 'free'
-			};
 
-			console.log("New Item is ", newItem);
+			if (data['item']) {
+				console.log("Still going into this");
+				var newItem = {
+					_id: data['item']['id'],
+					title: data['item']['volumeInfo']['title'],
+					author: data['item']['volumeInfo']['authors'],
+					image: 'Link new',
+					rating: data['item']['volumeInfo']['averageRating'],
+					availability: 'free'
+				};
 
-			var userID = global.userID;
+				console.log("New Item is ", newItem);
 
-			this.pushToServer(userID, newItem);
-			this.mybooks.push(newItem);
+				var userID = global.userID;
+
+				this.pushToServer(userID, newItem);
+				this.mybooks.push(newItem);
+			}
 
 		});
 		contactModal.present();
@@ -83,6 +88,12 @@ export class MyBooksPage {
 						// console.log("I is ", res[i]);
 						env.mybooks.push(res[i]);
 					}
+					if(env.mybooks.length == 0){
+						env.bookslength = false;
+					}
+					else{
+						env.bookslength = true;
+					}
 				}
 			});
 	}
@@ -117,7 +128,7 @@ export class MyBooksPage {
 		console.log("Deleting ", body);
 
 		var newItem = {
-			_id: body
+			_id: body._id
 		}
 
 		let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -129,6 +140,10 @@ export class MyBooksPage {
 		this.http.delete(url, options)
 			.map(res => res)
 			.subscribe();
+
+		var index = this.mybooks.indexOf(body);
+		this.mybooks.splice(index, 1);
+
 	}
 
 }

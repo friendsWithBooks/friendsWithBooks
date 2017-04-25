@@ -34,8 +34,7 @@ export class FbLogoutPage {
                     env.username = data.name,
                     env.gender = data.gender,
                     env.picture = data.picture,
-                    env.email = data.email,
-                    env.location = data.location
+                    env.email = data.email
                 // env.friends = data.friends
 
                 // var body = {

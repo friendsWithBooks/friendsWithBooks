@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/v2/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,31 +12,10 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
-ion-list
-{
-    margin-top: 20px !important;
+ion-list {
+    margin-top: 10px !important;
 }
 
-.margined
-{
+.margined {
     margin-bottom: 10px;
-}
-
-ion-card
-{
-    box-shadow: transparent;
-    img
-    {
-        width: 8rem;
-        height: 8rem;
-        float: left;
-        margin: 0.5rem 0 0.5rem 0.5rem;
-        padding: 1rem;
-    }
-    ion-card-header
-    {
-        vertical-align: center;
-        line-height: 6rem;
-    }
 }

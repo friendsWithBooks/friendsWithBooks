@@ -1,0 +1,18 @@
+profile-modal {
+    ion-content {
+        text-align: center !important;
+        margin-top: 15px !important;
+    }
+    .profPic {
+        width: 100px;
+        border-radius: 50%;
+    }
+    h4 {
+        color: red;
+    }
+    ion-item h2 {
+        font-weight: bold !important;
+        color: blue;
+        font-size: 17px !important;
+    }
+}

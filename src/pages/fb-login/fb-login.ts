@@ -41,7 +41,7 @@ export class FbLoginPage {
 	userlat: any;
 	userlong: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public nav: Nav, public http: Http, public geolocation: Geolocation, public locationAccuracy: LocationAccuracy) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public nav: Nav, public http: Http) {
 	}
 
 	ionViewDidLoad() {
@@ -53,7 +53,7 @@ export class FbLoginPage {
 		let nav = env.navCtrl;
 
 		// the permissions your facebook app needs from the user
-		permissions = ["public_profile", "user_friends", "user_location"];
+		permissions = ["public_profile", "user_friends"];
 
 		Facebook.login(permissions)
 			.then(function (response) {
@@ -64,7 +64,7 @@ export class FbLoginPage {
 				// Getting name, email and gender properties
 				Facebook.api("/me?fields=name,gender,email,location", params)
 					.then(function (user) {
-						user.picture = "https://graph.facebook.com/" + userId + "/picture?type=small";
+						user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
 						//now we have the users info, let's save it in the NativeStorage
 						NativeStorage.setItem('user',
 							{
@@ -73,48 +73,23 @@ export class FbLoginPage {
 								name: user.name,
 								gender: user.gender,
 								picture: user.picture,
-								email: user.email,
-								location: user.location
+								email: user.email
 							})
 							.then(function () {
-
-								// console.log("Came into then");
-
-								// env.locationAccuracy.canRequest().then((canRequest: boolean) => {
-
-								// 	if (canRequest) {
-								// 		// the accuracy option will be ignored by iOS
-								// 		env.locationAccuracy.request(env.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-								// 			() => console.log('Request successful'),
-								// 			error => console.log('Error requesting location permissions', error)
-								// 		);
-								// 	}
-
-								// });
-
-
-								// // Get user GeoLocation
-								// env.geolocation.getCurrentPosition().then((resp) => {
-								// 	console.log("Latitude is", resp.coords.latitude);
-								// 	console.log("Long is", resp.coords.longitude);
-								// 	// this.userlat = resp.coords.latitude
-								// 	// this.userlong = resp.coords.longitude
-								// }).catch((error) => {
-								// 	console.log('Error getting location', error);
-								// });
 
 								// Now post the user details to the server
 								var body = {
 									'_id': response.authResponse.userID,
 									'token': response.authResponse.accessToken,
 									'name': user.name,
-									'profilePic': user.picture,
-									'location': user.location.name
+									'profilePic': user.picture
 								}
 
 								// Set global variable userID to response.authResponse.userID
 								global.userID = response.authResponse.userID;
 								global.userToken = response.authResponse.accessToken;
+								global.userName = body.name;
+								global.userPicture = body.profilePic;
 
 								console.log("Body being pushed is ", body);
 

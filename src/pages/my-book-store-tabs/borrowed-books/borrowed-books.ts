@@ -19,7 +19,7 @@ import { global } from '../../../app/service';
 
 export class BorrowedBooksPage {
 
-	borrowedbooks: Array<{ _id: string, rating: string, title: string, author: string, image: string, availability: string }>;
+	borrowedbooks: Array<{ _id: string, rating: string, title: string, author: string, image: string, fromId: string, fromName: string }>;
 	bookslength: boolean = false;
 	userID: string;
 	url: string;

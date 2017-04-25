@@ -1,0 +1,46 @@
+<ion-header>
+
+    <ion-navbar>
+
+        <ion-title>
+            Request for books
+        </ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="dismiss()">
+                <ion-icon name="close-circle"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<!--<ion-content padding>
+
+    <ion-searchbar (ionInput)="getItems($event)" (ionCancel)="onCancel($event)" [showCancelButton]="true"></ion-searchbar>
+    <ion-list *ngIf="showList">
+        <ion-item *ngFor="let item of items">
+            {{ item }}
+        </ion-item>
+    </ion-list>
+
+</ion-content>-->
+
+<ion-content>
+    <img class="profPic" [src]="picture" alt="">
+    <h4>{{ name }}</h4>
+    <h5>{{ borrowCount }} books borrowed</h5>
+    <h5>{{ lentCount }} books lent</h5>
+
+    <hr>
+
+    <ion-list>
+        <h5> {{name}}'s racks </h5>
+        <ion-item *ngFor="let book of myRacks">
+            <h2>{{ book.title }}</h2>
+            <h3>{{ book.author }}</h3>
+            <button ion-button clear item-right (click)="requestBook(book)">Request</button>
+        </ion-item>
+    </ion-list>
+</ion-content>

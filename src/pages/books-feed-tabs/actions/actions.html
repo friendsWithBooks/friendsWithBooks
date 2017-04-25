@@ -20,7 +20,38 @@
         </ion-refresher-content>
     </ion-refresher>
 
-    <h4>Pending Actions...</h4>
+    <h4>Actions </h4>
     <hr>
+    <div>
+        <ion-card *ngFor="let book of nots">
+            <ion-card-content *ngIf="book.notifType === 'borrowRequest'">
+                <h2 style="font-weight: bold;"> {{ book.fromName }} </h2>
+                <p> <span style="font-style: italic;"> Requested for </span> &nbsp;&nbsp; <span style="font-weight: bold; font-size: 17px;"> {{ book.title }} </span>
+                </p>
+            </ion-card-content>
+            <ion-card-content *ngIf="book.notifType === 'request-book-approve'">
+                <h2 style="font-weight: bold;"> {{ book.fromName }} </h2>
+                <p> <span style="font-style: italic;"> approved your request for </span> &nbsp;&nbsp; <span style="font-weight: bold; font-size: 17px;"> {{ book.title }} </span>
+                </p>
+                <button ion-button clear small color="default" icon-left (click)="receivedBook(book)">
+                    <ion-icon name="checkmark"></ion-icon>
+                    Received book
+                </button>
+            </ion-card-content>
+            <ion-card-content *ngIf="book.notifType === 'request-book-reject'">
+                <h2 style="font-weight: bold;"> {{ book.fromName }} </h2>
+                <p> <span style="font-style: italic;"> rejected your request for </span> &nbsp;&nbsp; <span style="font-weight: bold; font-size: 17px;"> {{ book.title }} </span>
+                </p>
+            </ion-card-content>
+            <button ion-button clear small color="default" icon-left (click)="acceptRequest(book)" *ngIf="book.notifType === 'borrowRequest'">
+                <ion-icon name="checkmark"></ion-icon>
+                Accept
+            </button>
+            <button ion-button clear small color="danger" icon-right (click)="rejectRequest(book)" *ngIf="book.notifType === 'borrowRequest'">
+                <ion-icon name="close"></ion-icon>
+                &nbsp;&nbsp;Reject
+        </button>
+        </ion-card>
+    </div>
 
 </ion-content>

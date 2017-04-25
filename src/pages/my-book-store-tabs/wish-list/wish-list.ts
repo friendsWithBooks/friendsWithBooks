@@ -24,6 +24,7 @@ export class WishListPage {
 	result: any;
 	userID: string;
 	url: string;
+	bookslength: boolean = false;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public http: Http) {
 		this.wishlistbooks = [];
@@ -33,19 +34,21 @@ export class WishListPage {
 		let contactModal = this.modalCtrl.create(AddWishListBooks);
 		contactModal.onDidDismiss(data => {
 			console.log("Modal closed and got", data);
-			var newItem = {
-				_id: data['item']['id'],
-				title: data['item']['volumeInfo']['title'],
-				author: data['item']['volumeInfo']['authors'],
-				image: 'Link new',
-				rating: data['item']['volumeInfo']['averageRating'],
-				availability: 'free'
-			};
+			if (data['item']) {
+				var newItem = {
+					_id: data['item']['id'],
+					title: data['item']['volumeInfo']['title'],
+					author: data['item']['volumeInfo']['authors'],
+					image: 'Link new',
+					rating: data['item']['volumeInfo']['averageRating'],
+					availability: 'free'
+				};
 
-			var userID = global.userID;
+				var userID = global.userID;
 
-			this.pushToServer(userID, newItem);
-			this.wishlistbooks.push(newItem);
+				this.pushToServer(userID, newItem);
+				this.wishlistbooks.push(newItem);
+			}
 		});
 		contactModal.present();
 	}
@@ -80,6 +83,12 @@ export class WishListPage {
 						// console.log("I is ", res[i]);
 						env.wishlistbooks.push(res[i]);
 					}
+					if(env.wishlistbooks.length == 0){
+						env.bookslength = false;
+					}
+					else{
+						env.bookslength = true;
+					}
 				}
 			});
 	}
@@ -91,8 +100,6 @@ export class WishListPage {
 	}
 
 	pushToServer(userID, body) {
-
-		console.log("This was sent.....####\n\n\n\n");
 
 		console.log("Called pushToServer with", body);
 
@@ -118,7 +125,7 @@ export class WishListPage {
 		console.log("Deleting ", body);
 
 		var newItem = {
-			_id: body
+			_id: body._id
 		}
 
 		let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -130,6 +137,9 @@ export class WishListPage {
 		this.http.delete(url, options)
 			.map(res => res)
 			.subscribe();
+
+		var index = this.wishlistbooks.indexOf(body);
+		this.wishlistbooks.splice(index, 1);
 	}
 
 }

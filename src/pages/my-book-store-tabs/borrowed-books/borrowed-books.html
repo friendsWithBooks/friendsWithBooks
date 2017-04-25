@@ -26,12 +26,13 @@
 
     <ion-list *ngIf="bookslength">
         <ion-item *ngFor="let book of borrowedbooks">
-            <ion-thumbnail item-left>
+            <!--<ion-thumbnail item-left>
                 <img src="http://andrewcmaxwell.com/wp-content/themes/acm_2014/images/book_not_found.png">
-            </ion-thumbnail>
+            </ion-thumbnail>-->
             <h2>{{ book.title }}</h2>
-            <p>By {{ book.author }}</p>
-            <button ion-button clear item-right color="danger" round>Remove</button>
+            <!--<p>By {{ book.author }}</p>-->
+            <p>Lender: {{ book.fromName }}</p>
+            <!--<button ion-button clear item-right color="danger" round>Remove</button>-->
         </ion-item>
     </ion-list>
 

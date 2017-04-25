@@ -26,8 +26,8 @@ export class BooksFeedTabsPage {
 	// public navCtrl: NavController, public navParams: NavParams
 
 	tab1Root: any = WishlistBooksPage;
-	tab2Root: any = TopBooksPage;
-	tab3Root: any = FriendsActivityPage;
+	// tab2Root: any = TopBooksPage;
+	// tab3Root: any = FriendsActivityPage;
 	tab4Root: any = ActionsPage;
 
 	ionViewDidLoad() {

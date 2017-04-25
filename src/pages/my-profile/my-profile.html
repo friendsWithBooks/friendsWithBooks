@@ -5,41 +5,28 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-	<ion-navbar>
-		<button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-		<ion-title>Profile</ion-title>
-	</ion-navbar>
+        <ion-title>Profile</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+    <img class="profPic" [src]="picture" alt="">
+    <h4>{{ name }}</h4>
+    <h5>{{ borrowCount }} books borrowed</h5>
+    <h5>{{ lentCount }} books lent</h5>
 
-	<ion-card>
+    <hr>
 
-		<img src="https://inomics.com/sites/default/files/pictures/picture-95970-1460131169.png" />
-
-		<ion-card-header>
-			<ion-card-title>User Full Name</ion-card-title>
-		</ion-card-header>
-
-		<ion-row no-padding>
-			<ion-col>
-				<button ion-button clear small color="danger" icon-left>
-          			<ion-icon name='star'></ion-icon> Favorite </button>
-			</ion-col>
-			<ion-col text-center>
-				<button ion-button clear small color="danger" icon-left>
-          			<ion-icon name='musical-notes'></ion-icon>Listen</button>
-			</ion-col>
-			<ion-col text-right>
-				<button ion-button clear small color="danger" icon-left>
-          			<ion-icon name='share-alt'></ion-icon>Share
-		        </button>
-			</ion-col>
-		</ion-row>
-
-	</ion-card>
-
+    <ion-list>
+        <h5> Your racks </h5>
+        <ion-item *ngFor="let book of myRacks">
+            <h2>{{ book.title }}</h2>
+            <h3>{{ book.author }}</h3>
+        </ion-item>
+    </ion-list>
 </ion-content>

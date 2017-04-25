@@ -9,6 +9,7 @@ import { MyProfilePage } from '../pages/my-profile/my-profile';
 
 import { BooksFeedTabsPage } from '../pages/books-feed-tabs/books-feed-tabs';
 import { WishlistBooksPage } from '../pages/books-feed-tabs/wishlist-books/wishlist-books';
+import { getProfile } from '../pages/books-feed-tabs/wishlist-books/profile-modal';
 import { TopBooksPage } from '../pages/books-feed-tabs/top-books/top-books';
 import { FriendsActivityPage } from '../pages/books-feed-tabs/friends-activity/friends-activity';
 import { ActionsPage } from '../pages/books-feed-tabs/actions/actions';
@@ -82,48 +83,31 @@ export class MyApp {
 			// because we don't want to ask users to log in each time they open the app
 			let env = this;
 
-			// env.locationAccuracy.canRequest().then((canRequest: boolean) => {
-
-			// 	if (canRequest) {
-			// 		// the accuracy option will be ignored by iOS
-			// 		env.locationAccuracy.request(env.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-			// 			() => console.log('Request successful'),
-			// 			error => console.log('Error requesting location permissions', error)
-			// 		);
-			// 	}
-
-			// });
-
-			// env.geolocation.getCurrentPosition().then((resp) => {
-			// 	console.log("Latitude is", resp.coords.latitude);
-			// 	console.log("Long is", resp.coords.longitude);
-			// 	// this.userlat = resp.coords.latitude
-			// 	// this.userlong = resp.coords.longitude
-			// }).catch((error) => {
-			// 	console.log('Error getting location', error);
-			// });
-
 			// Check if userID is stored
 
 			NativeStorage.getItem('user')
 				.then(function (data) {
-					global.userID = data.userID
+					global.userID = data.userID;
+					global.userName = data.name;
+					global.userPicture = data.picture;
+					env.username = global.userName;
+					env.profilePicture = global.userPicture;
 					console.log("This is in service....@@@@");
 				}, function (error) {
 					console.log("Error is", error);
 				});
 
 			// env.nav.push(FbLoginPage);
-			if (global.userID == 'none') {
-				// Push to FbLoginPage to force FB login
-				env.nav.push(FbLoginPage);
-			}
-			else {
-				env.nav.push(MyBookStoreTabsPage);
-			}
+			// if (global.userID == 'none') {
+			// 	// Push to FbLoginPage to force FB login
+			// 	env.nav.push(FbLoginPage);
+			// }
+			// else {
+			// 	env.nav.push(MyBookStoreTabsPage);
+			// }
 
 			// Pushing to temporary pages for testing but app wont work without FB login
-			// env.nav.push(MyBookStoreTabsPage);
+			env.nav.push(FbLoginPage);
 
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.

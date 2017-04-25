@@ -7,6 +7,7 @@ import { MyProfilePage } from '../pages/my-profile/my-profile';
 
 import { BooksFeedTabsPage } from '../pages/books-feed-tabs/books-feed-tabs';
 import { WishlistBooksPage } from '../pages/books-feed-tabs/wishlist-books/wishlist-books';
+import { getProfile } from '../pages/books-feed-tabs/wishlist-books/profile-modal';
 import { TopBooksPage } from '../pages/books-feed-tabs/top-books/top-books';
 import { FriendsActivityPage } from '../pages/books-feed-tabs/friends-activity/friends-activity';
 import { ActionsPage } from '../pages/books-feed-tabs/actions/actions';
@@ -37,6 +38,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
     MyProfilePage,
     BooksFeedTabsPage,
     WishlistBooksPage,
+    getProfile,
     TopBooksPage,
     FriendsActivityPage,
     ActionsPage,
@@ -62,6 +64,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
     MyProfilePage,
     BooksFeedTabsPage,
     WishlistBooksPage,
+    getProfile,
     TopBooksPage,
     FriendsActivityPage,
     ActionsPage,

@@ -21,7 +21,19 @@
         </ion-refresher-content>
     </ion-refresher>
 
-    <h4>My Wishlist Books...</h4>
-    <hr>
+    <ion-list>
+
+        <h4>My Wishlist Books</h4>
+        <hr>
+
+        <ion-item *ngFor="let book of wishListBooks">
+            <ion-avatar item-left>
+                <img [src]="book.image">
+            </ion-avatar>
+            <h2>{{ book.name }}</h2>
+            <p>{{ book._id }}</p>
+            <button ion-button clear item-right (click)="presentContactModal(book)">View</button>
+        </ion-item>
+    </ion-list>
 
 </ion-content>

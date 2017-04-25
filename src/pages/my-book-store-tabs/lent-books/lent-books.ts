@@ -19,7 +19,7 @@ import { global } from '../../../app/service';
 
 export class LentBooksPage {
 
-	lentbooks: Array<{ _id: string, rating: string, title: string, author: string, image: string, availability: string }>;
+	lentbooks: Array<{ _id: string, rating: string, title: string, author: string, image: string, toId: string, toName: string }>;
 	bookslength: boolean = false;
 	userID: string;
 	url: string;

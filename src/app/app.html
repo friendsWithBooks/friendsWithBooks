@@ -1,23 +1,28 @@
 <ion-menu [content]="content">
-	<ion-header>
-		<ion-toolbar>
-			<ion-title>Menu</ion-title>
-		</ion-toolbar>
-	</ion-header>
+    <!--<ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>-->
 
-	<ion-content>
+    <ion-content>
 
-		<ion-card>
-			<img src="https://inomics.com/sites/default/files/pictures/picture-95970-1460131169.png" alt="">
-			<ion-card-header> User Fullname </ion-card-header>
-		</ion-card>
+        <!--<ion-card>
+            <img [src]="profilePicture" alt="">
+            <ion-card-header> {{ username }} </ion-card-header>
+        </ion-card>-->
 
-		<ion-list no-lines>
-			<button class="margined" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)"> <ion-icon name="{{ p.icon }}" item-left></ion-icon> {{ p.title }} </button>
-			<!--<ion-item>-->
-			<!--<ion-icon name="leaf" item-left></ion-icon> Herbology </ion-item>-->
-		</ion-list>
-	</ion-content>
+        <div style="text-align: center; background-color: #ef5350; padding: 5px;">
+            <img [src]="profilePicture" style="width: 70px !important; border-radius: 50%; margin-top: 15px;">
+            <h4 style="color: white;">{{ username }}</h4>
+        </div>
+
+        <ion-list no-lines>
+            <button class="margined" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)"> <ion-icon name="{{ p.icon }}" item-left></ion-icon> {{ p.title }} </button>
+            <!--<ion-item>-->
+            <!--<ion-icon name="leaf" item-left></ion-icon> Herbology </ion-item>-->
+        </ion-list>
+    </ion-content>
 
 </ion-menu>
 

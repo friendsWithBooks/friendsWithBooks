@@ -19,8 +19,8 @@
     <h4>My WishList...</h4>
     <hr>
 
-    <ion-fab top right edge>
-        <button ion-fab color="secondary" (click)="presentContactModal()"><ion-icon name="add"></ion-icon></button>
+    <ion-fab bottom right edge>
+        <button ion-fab color="danger" (click)="presentContactModal()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
     <ion-refresher (ionRefresh)="doRefresh($event)">
@@ -30,13 +30,15 @@
 
     <ion-list>
         <ion-item *ngFor="let book of wishlistbooks">
-            <ion-thumbnail item-left>
+            <!--<ion-thumbnail item-left>
                 <img src="http://andrewcmaxwell.com/wp-content/themes/acm_2014/images/book_not_found.png">
-            </ion-thumbnail>
+            </ion-thumbnail>-->
             <h2>{{ book.title }}</h2>
             <p>By {{ book.author }}</p>
-            <button ion-button clear item-right color="danger" round (click)="deleteBook(book._id)">Remove</button>
+            <button ion-button clear item-right color="danger" round (click)="deleteBook(book)">Remove</button>
         </ion-item>
     </ion-list>
+
+    <h3 *ngIf="!bookslength" style="text-align: center; margin-top: 50%; transform: translateY(-50%);"> Oops! we've got nothing to show here right now! </h3>
 
 </ion-content>
